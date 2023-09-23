@@ -1,0 +1,8 @@
+.login-register__already-login {
+    all: unset;
+    cursor: pointer;
+  }
+  
+  .login-register__already-login:hover {
+    opacity: 0.6;
+  }

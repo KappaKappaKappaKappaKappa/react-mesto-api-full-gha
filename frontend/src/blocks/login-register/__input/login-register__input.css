@@ -1,0 +1,7 @@
+.login-register__input {
+    all: unset;
+    border-bottom: solid 1px white;
+    padding-bottom: 7px;
+    width: 100%;
+  }
+

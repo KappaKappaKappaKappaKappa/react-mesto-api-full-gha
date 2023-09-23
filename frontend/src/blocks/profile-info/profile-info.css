@@ -1,0 +1,16 @@
+.profile-info {
+    min-width: 38.3%;
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+@media all and (min-width: 320px) and (max-width: 1024px){
+    .profile-info {
+        max-width: 100%;
+        margin: 0;
+        gap: 8px;
+        margin-bottom: 36px;
+    }
+}

@@ -1,0 +1,10 @@
+.burger-menu__link {
+    all: unset;
+    color: #a9a9a9;
+    font-weight: 400;
+  }
+  
+  .burger-menu__link:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }

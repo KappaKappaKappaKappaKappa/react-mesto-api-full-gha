@@ -1,0 +1,11 @@
+.header__wrapper {
+    display: flex;
+    text-align: right;
+    gap: 24px;
+  }
+
+  @media all and (min-width: 0) and (max-width: 767px){
+    .header__wrapper{
+      display: none;
+    }
+  }

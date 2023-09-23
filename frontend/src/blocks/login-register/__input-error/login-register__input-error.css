@@ -1,0 +1,10 @@
+.login-register__input-error {
+  color: #ff0000;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  min-height: 30px;
+  max-width: 358px;
+  display: block;
+  min-height: 30px;
+}

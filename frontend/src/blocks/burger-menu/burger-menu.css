@@ -1,0 +1,8 @@
+.burger-menu {
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  }
+  

@@ -1,0 +1,9 @@
+.pop-up__container_open_image{
+    min-width: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    gap: 10px;
+}

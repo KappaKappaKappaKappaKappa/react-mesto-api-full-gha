@@ -1,0 +1,10 @@
+.login-register {
+    margin: 0;
+    padding: 0;
+    max-width: 27.97%;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+  }

@@ -1,0 +1,14 @@
+.pop-up__tooltip-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+  .pop-up__tooltip-container {
+    width: 236px;
+    height: 258px;
+    gap: 40px;
+  }
+}

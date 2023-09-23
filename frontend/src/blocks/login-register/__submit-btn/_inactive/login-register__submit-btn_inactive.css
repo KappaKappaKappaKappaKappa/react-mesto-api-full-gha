@@ -1,0 +1,10 @@
+.login-register__submit-btn_inactive{
+    background-color: #E5E5E5;
+    color:#000000;
+    opacity: 0.2;
+    border: 1px solid;
+    cursor: default;
+}
+.login-register__submit-btn_inactive:hover{
+    opacity: 0.2;
+}

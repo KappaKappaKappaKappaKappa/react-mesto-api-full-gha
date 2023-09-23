@@ -1,0 +1,4 @@
+.login-register__form {
+    display: flex;
+    flex-direction: column;
+  }
