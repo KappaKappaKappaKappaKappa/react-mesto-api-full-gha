@@ -74,7 +74,7 @@ function App() {
       api
         .getCards()
         .then((cards) => {
-          setCards(cards);
+          setCards(cards.reverse());
         })
         .catch((error) => {
           console.log(error);
@@ -84,12 +84,12 @@ function App() {
 
   //Проверка токена при загрузке страницы
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("userId");
     if (token) {
       auth
         .checkToken(token)
         .then((data) => {
-          setEmail(data.data.email);
+          setEmail(data.email);
           handleLoggedIn();
           navigate("/main");
         })
@@ -107,7 +107,7 @@ function App() {
 
   const handleCardLike = (card) => {
     //Проверка наличия лайка на карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     //Запрос обновленных данных карточки
     api
@@ -247,10 +247,10 @@ function App() {
     auth
       .handleLoginUser(password, email)
       .then((data) => {
-        if (data.token) {
+        if (data._id) {
           setEmail(email);
           handleLoggedIn();
-          localStorage.setItem("token", data.token);
+          localStorage.setItem("userId", data._id);
           navigate("/main");
         }
       })
@@ -269,7 +269,7 @@ function App() {
   //Функция выхода из системы
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     navigate("/sign-in");
     setIsConfirmLogoutPopup(false);
   };

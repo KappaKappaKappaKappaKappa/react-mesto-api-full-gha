@@ -5,6 +5,7 @@ const NotFoundError = require("../errors/NotFoundError");
 const BadRequestError = require("../errors/BadRequestError");
 const AuthError = require("../errors/AuthError");
 const ConflictError = require("../errors/ConflictError");
+const { JWT_SECRET } = require("../config");
 
 const { STATUS_OK, STATUS_CREATED } = require("../utils/errors");
 
@@ -23,7 +24,7 @@ const getUser = async (req, res, next) => {
     if (!user) {
       throw new NotFoundError("Запрашиваемый пользователь не найден");
     }
-    return res.status(STATUS_OK).send({ data: user });
+    return res.status(STATUS_OK).send({ user });
   } catch (err) {
     if (err.name === "CastError") {
       return next(new BadRequestError("Некорректный id пользователя"));
@@ -87,7 +88,7 @@ const updateProfile = async (req, res, next) => {
       throw new NotFoundError("Пользователь с указанным id не найден");
     }
 
-    res.status(STATUS_OK).send({ data: user });
+    res.status(STATUS_OK).send(user);
   } catch (err) {
     if (err.name === "ValidationError") {
       return next(
@@ -112,7 +113,7 @@ const updateAvatar = async (req, res, next) => {
     if (!user) {
       throw new NotFoundError("Пользователь с указанным id не найден");
     }
-    res.status(STATUS_OK).send({ data: user });
+    res.status(STATUS_OK).send(user);
   } catch (err) {
     if (err.name === "ValidationError") {
       return next(
@@ -142,12 +143,10 @@ const login = async (req, res, next) => {
     }
 
     const payload = { _id: user._id };
-    const token = jwt.sign(payload, "secret-key", { expiresIn: "1w" });
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1w" });
 
     res.cookie("jwt", token, { httpOnly: true });
-    res.status(STATUS_OK).send({
-      data: "Успешная авторизация!",
-    });
+    res.status(STATUS_OK).send(user.toJSON());
   } catch (err) {
     return next(err);
   }
@@ -160,7 +159,7 @@ const getCurrentUser = async (req, res, next) => {
       throw new NotFoundError("Пользователь не найден");
     }
 
-    return res.status(STATUS_OK).send({ data: currentUser });
+    return res.status(STATUS_OK).send(currentUser);
   } catch (err) {
     if (err.name === "CastError") {
       return next(new BadRequestError("Некорректный id пользователя"));
