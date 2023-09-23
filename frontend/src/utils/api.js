@@ -2,7 +2,6 @@ class Api {
     constructor(options) {
         this._url = options.baseUrl;
         this._headers = options.headers;
-        this._token = options.headers.authorization;
     }
 
     _checkAnswer(res) {
@@ -11,18 +10,14 @@ class Api {
 
     getInfo() {
         return fetch(`${this._url}/users/me`, {
-            headers: {
-                authorization: this._token
-            }
+            credentials: "include"
         })
             .then(this._checkAnswer)
     }
 
     getCards() {
         return fetch(`${this._url}/cards`, {
-            headers: {
-                authorization: this._token
-            }
+            credentials: "include"
         })
             .then(this._checkAnswer)
     }
@@ -30,6 +25,7 @@ class Api {
     setUserInfo(data) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
+            credentials: "include",
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
@@ -42,6 +38,7 @@ class Api {
     setNewAvatar(data) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
+            credentials: "include",
             headers: this._headers,
             body: JSON.stringify({
                 avatar: data.avatar
@@ -53,6 +50,7 @@ class Api {
     addCard(data) {
         return fetch(`${this._url}/cards`, {
             method: "POST",
+            credentials: "include",
             headers: this._headers,
             body: JSON.stringify({
                 name: data.title,
@@ -65,9 +63,7 @@ class Api {
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
             method: "DELETE",
-            headers: {
-                authorization: this._token
-            }
+            credentials: "include",
         })
             .then(this._checkAnswer)
     }
@@ -76,17 +72,13 @@ class Api {
         if (isLiked) {
             return fetch(`${this._url}/cards/${cardId}/likes`, {
                 method: "PUT",
-                headers: {
-                    authorization: this._token
-                }
+                credentials: "include"
             })
                 .then(this._checkAnswer)
         } else {
             return fetch(`${this._url}/cards/${cardId}/likes`, {
                 method: "DELETE",
-                headers: {
-                    authorization: this._token
-                }
+                credentials: "include"
             })
                 .then(this._checkAnswer)
         }
@@ -95,8 +87,8 @@ class Api {
 
 const api = new Api({
     baseUrl: 'https://api.project.mesto.nomoredomainsrocks.ru',
+    // baseUrl: 'http://localhost:3000',
     headers: {
-        authorization: 'a069766e-f2cf-4169-8365-de2d06b0c981',
         'Content-Type': 'application/json'
     }
 })

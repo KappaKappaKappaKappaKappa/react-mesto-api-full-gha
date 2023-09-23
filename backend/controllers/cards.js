@@ -8,7 +8,7 @@ const { STATUS_OK, STATUS_CREATED } = require("../utils/errors");
 const getCards = async (req, res, next) => {
   try {
     const cards = await Card.find({});
-    res.status(STATUS_OK).send({ data: cards });
+    res.status(STATUS_OK).send(cards);
   } catch (err) {
     return next(err);
   }
@@ -20,7 +20,7 @@ const createCard = async (req, res, next) => {
 
   try {
     const card = await Card.create({ name, link, owner });
-    res.status(STATUS_CREATED).send({ data: card });
+    res.status(STATUS_CREATED).send(card);
   } catch (err) {
     if (err.name === "ValidationError") {
       return next(
@@ -70,7 +70,7 @@ const cardLike = async (req, res, next) => {
       throw new NotFoundError("Передан несуществующий id карточки.");
     }
 
-    res.status(STATUS_OK).send({ likes: card.likes });
+    res.status(STATUS_OK).send(card);
   } catch (err) {
     if (err.name === "CastError") {
       return next(
@@ -95,7 +95,7 @@ const cardDislike = async (req, res, next) => {
       throw new NotFoundError("Передан несуществующий id карточки.");
     }
 
-    res.status(STATUS_OK).send({ likes: card.likes });
+    res.status(STATUS_OK).send(card);
   } catch (err) {
     if (err.name === "CastError") {
       return next(

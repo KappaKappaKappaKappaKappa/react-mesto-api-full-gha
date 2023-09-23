@@ -1,16 +1,29 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const { errors } = require("celebrate");
+const cors = require("cors");
+const { DB_ADRESS } = require("./config");
 const { errorHandler } = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const app = express();
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3001",
+      "https://project.mesto.nomoredomainsrocks.ru",
+    ],
+    credentials: true,
+    maxAge: 30,
+  })
+);
 const { PORT = 3000 } = process.env;
 
-mongoose.connect("mongodb://127.0.0.1:27017/mestodb");
+mongoose.connect(DB_ADRESS);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
