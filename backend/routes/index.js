@@ -39,7 +39,7 @@ router.use(
 router.use("/users", auth, require("./users"));
 router.use("/cards", auth, require("./cards"));
 
-router.all("*", () => {
+router.use(() => {
   throw new NotFoundError("Запрашиваемый ресурс не найден");
 });
 
