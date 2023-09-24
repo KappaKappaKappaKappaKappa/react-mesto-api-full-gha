@@ -12,9 +12,9 @@ router.get("/crash-test", () => {
   }, 0);
 });
 
-router.get("/", (req, res) => {
-  res.send("Сервер работает и ждет запросы, все круто!");
-});
+// router.get("/", (req, res) => {
+//   res.send("Сервер работает и ждет запросы, все круто!");
+// });
 
 router.use(
   "/signin",
