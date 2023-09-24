@@ -12,9 +12,9 @@ router.get("/crash-test", () => {
   }, 0);
 });
 
-// router.get("/", (req, res) => {
-//   res.send("Сервер работает и ждет запросы, все круто!");
-// });
+router.get("/", (req, res) => {
+  res.send({ message: "Сервер работает и ждет запросы, все круто!" });
+});
 
 router.use(
   "/signin",
@@ -24,7 +24,7 @@ router.use(
       password: Joi.string().required(),
     }),
   }),
-  login,
+  login
 );
 router.use(
   "/signup",
@@ -34,12 +34,10 @@ router.use(
       password: Joi.string().required().min(8),
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
-      avatar: Joi.string().regex(
-        urlRegex
-      ),
+      avatar: Joi.string().regex(urlRegex),
     }),
   }),
-  createUser,
+  createUser
 );
 
 router.use("/users", auth, require("./users"));
