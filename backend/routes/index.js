@@ -6,14 +6,14 @@ const { urlRegex } = require("../utils/validation");
 const { createUser, login } = require("../controllers/users");
 const NotFoundError = require("../errors/NotFoundError");
 
-router.get("/", (req, res) => {
-  res.send("Сервер работает и ждет запросы, все круто!");
-});
-
 router.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Сервер сейчас упадёт");
   }, 0);
+});
+
+router.get("/", (req, res) => {
+  res.send("Сервер работает и ждет запросы, все круто!");
 });
 
 router.use(
