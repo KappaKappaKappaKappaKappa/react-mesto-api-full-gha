@@ -12,10 +12,6 @@ router.get("/crash-test", () => {
   }, 0);
 });
 
-router.get("/", (req, res) => {
-  res.json({ message: "Сервер работает и ждет запросы, все круто!" });
-});
-
 router.use(
   "/signin",
   celebrate({
@@ -43,7 +39,7 @@ router.use(
 router.use("/users", auth, require("./users"));
 router.use("/cards", auth, require("./cards"));
 
-router.use(() => {
+router.all("*", () => {
   throw new NotFoundError("Запрашиваемый ресурс не найден");
 });
 
