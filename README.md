@@ -10,7 +10,7 @@ https://project.mesto.nomoredomainsrocks.ru/sign-up
 
 ## Ссылки на проект
 
-IP-адрес 51.250.100.59
+IP 51.250.100.59
 
 Frontend https://project.mesto.nomoredomainsrocks.ru
 
