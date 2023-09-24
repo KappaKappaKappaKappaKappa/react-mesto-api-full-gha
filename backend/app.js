@@ -38,16 +38,6 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.get("/crash-test", () => {
-  setTimeout(() => {
-    throw new Error("Сервер сейчас упадёт");
-  }, 0);
-});
-
-app.get("/", (req, res) => {
-  res.json({ message: "Сервер работает и ждет запросы, все круто!" });
-});
-
 app.use("/", require("./routes/index"));
 
 app.use(errorLogger);
