@@ -13,7 +13,7 @@ router.get("/crash-test", () => {
 });
 
 router.get("/", (req, res) => {
-  res.send({ message: "Сервер работает и ждет запросы, все круто!" });
+  res.json({ message: "Сервер работает и ждет запросы, все круто!" });
 });
 
 router.use(
