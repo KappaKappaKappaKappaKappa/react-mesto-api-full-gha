@@ -31,12 +31,13 @@ const limiter = rateLimit({
 });
 
 app.use(helmet());
-app.use(limiter);
 
 app.use(express.json());
 app.use(cookieParser());
 
 app.use(requestLogger);
+
+app.use(limiter);
 
 app.use("/", require("./routes/index"));
 
