@@ -6,11 +6,11 @@ const { urlRegex } = require("../utils/validation");
 const { createUser, login } = require("../controllers/users");
 const NotFoundError = require("../errors/NotFoundError");
 
-router.get("/crash-test", () => {
-  setTimeout(() => {
-    throw new Error("Сервер сейчас упадёт");
-  }, 0);
-});
+// router.get("/crash-test", () => {
+//   setTimeout(() => {
+//     throw new Error("Сервер сейчас упадёт");
+//   }, 0);
+// });
 
 router.use(
   "/signin",
